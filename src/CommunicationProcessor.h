@@ -1,12 +1,13 @@
-#include "BufferReader.h"
+#include "WiFiLib/sockets/sockets_parts/buffer_reader/BufferReader.h"
 #include <ESP8266WiFi.h>
-#include "DataManager.h"
-#include "MethodsHolder.h"
-#include "Flags.h"
+#include "WiFiLib/sockets/sockets_parts/data_manager/DataManager.h"
+#include "WiFiLib/sockets/sockets_parts/methods_holder/MethodsHolder.h"
+#include "WiFiLib/sockets/sockets_parts/flags/Flags.h"
 
 class CommunicationProcessor : public MethodsHolder,public Flags{
 private:
-    unsigned char buffer[1024];
+    WiFiClient* activeWiFiClient;
+    unsigned char buffer[256];
     DataManager dataManager;
     BufferReader bufferReader;
     bool checkIfEndLine(int bytesRead);
@@ -14,4 +15,6 @@ private:
 protected:
     void handleClient(WiFiClient* wifiClient);
 public:
+    CommunicationProcessor():BUFFER_SIZE(256){};
+    void send(const char* classIdent,const char* methodIdent,const char* message);
 };

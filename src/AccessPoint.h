@@ -6,8 +6,8 @@
 #define WIFILIB_ACCESSPOINT_H
 
 
-#include <WiFiConfigurator.h>
-#include <WiFiStatus.h>
+#include <WiFiLib/wifi/wifi_models/controllers_models/wifi_configurator/WiFiConfigurator.h>
+#include <WiFiLib/wifi/wifi_models/controllers_models/wifi_status/WiFiStatus.h>
 
 class AccessPoint : public WiFiConfigurator,public WiFiStatus {
 private:

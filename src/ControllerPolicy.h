@@ -4,7 +4,7 @@
 
 #ifndef WIFILIB_CONTROLLERPOLICY_H
 #define WIFILIB_CONTROLLERPOLICY_H
-#include "mainLib.h"
+#include "../../../main_lib/mainLib.h"
 
 template<typename WiFiApi>
 class ControllerPolicy{

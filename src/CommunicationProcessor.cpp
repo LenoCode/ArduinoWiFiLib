@@ -4,18 +4,22 @@
 
 void CommunicationProcessor::handleClient(WiFiClient* wifiClient){
     CLOSE_SOCKET = false;
+    this->activeWiFiClient = WiFiClient;
 
-    while(!CLOSE_SOCKET){
-        int bytesRead = wifiClient->readBytes(buffer,1024);
-        dataManager.appendData(bufferReader.getDataReaded(buffer,bytesRead));
-    
-        if (checkIfEndLine(bytesRead)){
-            handleDataRecv();
-            dataManager.clearBuffer();
+    while(!CLOSE_SOCKET && wifiClient->connected()){
+        
+        int available;
+        if ((available = wifiClient->available() ) > 0){
+            int bytesRead = wifiClient->readBytes(buffer,(available <= BUFFER_SIZE) ? available : BUFFER_SIZE);
+            dataManager.appendData(bufferReader.getDataReaded(buffer,bytesRead));
+            
+            if (checkIfEndLine(bytesRead)){
+                handleDataRecv();
+                dataManager.clearBuffer();
+            }
         }
     }
     Serial.println("CLIENT QUIT");
-
 }
 
 void CommunicationProcessor::handleDataRecv(){
@@ -30,6 +34,10 @@ void CommunicationProcessor::handleDataRecv(){
     }
 }
 
+void CommunicationProcessor::send(const char* classIdent,const char* methodIdent,const char* message){
+    const char* modifiedString = Protocol::concatDataString(classIdent,methodIdent,message);
+    this->activeWiFiClient->write(modifiedString);
+}
 
 bool CommunicationProcessor::checkIfEndLine(int bytesRead){
     if (bytesRead >= Protocol::END_LINE_SIZE){
