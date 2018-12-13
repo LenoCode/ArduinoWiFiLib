@@ -3,10 +3,11 @@
 const char* Protocol::END_LINE ="</END LINE>";
 const int Protocol::END_LINE_SIZE = 11;
 
-const char* Protocol::SOCKET_CLOSED = "</SOCKET_CLOSED>Socket closed>";
+const char* Protocol::SOCKET_CLOSED = "</SOCKET_CLOSED>Socket closed></END TRANSFER>Finished>";
 const int Protocol::SOCKET_CLOSED_SIZE = 30;
 
-const char* Protocol::DATA_STRING = "<DATA_STRING>classIdent:%s|methodIdent:%s|message:%s";
+const char* Protocol::STREAM_CLOSING = "<SOCKET_STREAM_CLOSING>Stream closing></END TRANSFER>Finished>";
+const char* Protocol::DATA_STRING = "<DATA_STRING>classIdent:%s|methodIdent:%s|message:%s</END LINE>";
 
 
 

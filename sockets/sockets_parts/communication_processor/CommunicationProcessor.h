@@ -6,12 +6,14 @@
 
 class CommunicationProcessor : public MethodsHolder,public Flags{
 private:
+    int BUFFER_SIZE;
     WiFiClient* activeWiFiClient;
     unsigned char buffer[256];
     DataManager dataManager;
     BufferReader bufferReader;
     bool checkIfEndLine(int bytesRead);
     void handleDataRecv();
+    void closeSocket();
 protected:
     void handleClient(WiFiClient* wifiClient);
 public:
