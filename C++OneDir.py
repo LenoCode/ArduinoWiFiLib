@@ -33,8 +33,8 @@ def createCOneDirFile():
     if len(sys.argv) >= 4 or len(sys.argv) == 1:
         print("Only one argument is needed")
     else:
-        srcDir = sys.argv[1]
-        destDir = srcDir+"/"+sys.argv[2]
+        srcDir = "./"
+        destDir = srcDir+"/"+"src"
         print(sys.argv)
         changeDir(srcDir)
 
