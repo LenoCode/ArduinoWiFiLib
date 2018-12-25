@@ -29,14 +29,27 @@ void CommunicationProcessor::handleDataRecv(){
         std::string message (dataManager.getMessage(line));
 
         if (callMethod(this,methodName.c_str(),message.c_str())){
-            CLOSE_SOCKET = true;
+            closeSocket();
         }
     }
 }
 
 void CommunicationProcessor::send(const char* classIdent,const char* methodIdent,const char* message){
-    const char* modifiedString = Protocol::concatDataString(classIdent,methodIdent,message);
-    this->activeWiFiClient->write(modifiedString);
+    std::string modifiedString(Protocol::DATA_STRING);
+    const char* data[] = {classIdent,methodIdent,message};
+
+    for (int i = 0 ; i < 3; i++){
+        int index = modifiedString.find("%s");
+         modifiedString = modifiedString.replace(index,2,data[i]);
+    }
+    this->activeWiFiClient->write(modifiedString.c_str());
+    this->activeWiFiClient->flush();
+}
+
+void CommunicationProcessor::closeSocket(){
+    CLOSE_SOCKET = true;
+    this->activeWiFiClient->write(Protocol::STREAM_CLOSING);
+    this->activeWiFiClient->flush();
 }
 
 bool CommunicationProcessor::checkIfEndLine(int bytesRead){
