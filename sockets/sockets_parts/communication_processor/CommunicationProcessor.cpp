@@ -35,8 +35,14 @@ void CommunicationProcessor::handleDataRecv(){
 }
 
 void CommunicationProcessor::send(const char* classIdent,const char* methodIdent,const char* message){
-    const char* modifiedString = Protocol::concatDataString(classIdent,methodIdent,message);
-    this->activeWiFiClient->write(modifiedString);
+    std::string modifiedString(Protocol::DATA_STRING);
+    const char* data[] = {classIdent,methodIdent,message};
+
+    for (int i = 0 ; i < 3; i++){
+        int index = modifiedString.find("%s");
+         modifiedString = modifiedString.replace(index,2,data[i]);
+    }
+    this->activeWiFiClient->write(modifiedString.c_str());
     this->activeWiFiClient->flush();
 }
 

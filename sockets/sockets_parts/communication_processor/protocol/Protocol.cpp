@@ -24,14 +24,5 @@ bool Protocol::check(const char* dataToCheck,int dataSize, const char* comparing
     return true;
 }
 
-const char* Protocol::concatDataString(const char* classIdent,const char* methodIdent,const char* message){
-    std::string modifiedString(DATA_STRING);
-    const char* data[] = {classIdent,methodIdent,message};
 
-    for (int i = 0 ; i < 3; i++){
-        int index = modifiedString.find("%s");
-         modifiedString = modifiedString.replace(index,2,data[i]);
-    }
-    return modifiedString.c_str();
-}
 

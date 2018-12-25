@@ -15,7 +15,6 @@ public:
 
     static bool check(const char* dataToCheck,int dataSize, const char* comparingTo, int comparingToSize);
 
-    static const char* concatDataString(const char* classIdent,const char* methodIdent,const char* message);
 private:
 
 };
