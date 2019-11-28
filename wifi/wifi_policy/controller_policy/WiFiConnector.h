@@ -5,7 +5,7 @@
 #ifndef WIFILIB_WIFICONNECTPOINT_H
 #define WIFILIB_WIFICONNECTPOINT_H
 #include "ControllerPolicy.h"
-#include "WiFiLib/wifi/wifi_controller/connector/Connector.h"
+#include "Connector.h"
 
 
 class WiFiConnector :public ControllerPolicy<Connector>{

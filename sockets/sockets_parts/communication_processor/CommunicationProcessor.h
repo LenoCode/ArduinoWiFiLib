@@ -1,8 +1,8 @@
-#include "WiFiLib/sockets/sockets_parts/buffer_reader/BufferReader.h"
+#include "BufferReader.h"
 #include <ESP8266WiFi.h>
-#include "WiFiLib/sockets/sockets_parts/data_manager/DataManager.h"
-#include "WiFiLib/sockets/sockets_parts/methods_holder/MethodsHolder.h"
-#include "WiFiLib/sockets/sockets_parts/flags/Flags.h"
+#include "DataManager.h"
+#include "MethodsHolder.h"
+#include "Flags.h"
 
 class CommunicationProcessor : public MethodsHolder,public Flags{
 private:

@@ -1,5 +1,5 @@
-#include "WiFiLib/main_lib/mainLib.h"
-#include "WiFiLib/sockets/sockets_parts/communication_processor/protocol/Protocol.h"
+#include "mainLib.h"
+#include "Protocol.h"
 
 
 class DataManager{

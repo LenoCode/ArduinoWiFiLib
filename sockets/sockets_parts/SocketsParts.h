@@ -1,4 +1,4 @@
-#include "communication_processor/CommunicationProcessor.h"
+#include "CommunicationProcessor.h"
 
 
 class SocketParts :public CommunicationProcessor{

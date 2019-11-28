@@ -7,7 +7,7 @@
 
 
 #include <ESP8266WiFi.h>
-#include "WiFiLib/sockets/sockets_parts/SocketsParts.h"
+#include "SocketsParts.h"
 
 
 class ServerEsp : public SocketParts{

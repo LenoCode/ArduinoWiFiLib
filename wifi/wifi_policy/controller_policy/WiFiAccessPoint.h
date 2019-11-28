@@ -5,7 +5,7 @@
 #ifndef WIFILIB_WIFIACCESSPOINT_H
 #define WIFILIB_WIFIACCESSPOINT_H
 
-#include "wifi/wifi_controller/access_point/AccessPoint.h"
+#include "AccessPoint.h"
 #include "ControllerPolicy.h"
 
 
